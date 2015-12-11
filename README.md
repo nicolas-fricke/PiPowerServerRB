@@ -1,5 +1,8 @@
 # PiPowerServerRB
 
+[![Build Status](https://travis-ci.org/nicolas-fricke/PiPowerServerRB.svg)](https://travis-ci.org/nicolas-fricke/PiPowerServerRB)
+[![Code Climate](http://img.shields.io/codeclimate/github/nicolas-fricke/PiPowerServerRB.svg)](https://codeclimate.com/github/nicolas-fricke/PiPowerServerRB)
+
 A Ruby on Rails server which allows to manage and switch wireless sockets with a Raspberry Pi.
 
 # Contributing
