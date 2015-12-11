@@ -39,6 +39,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'rspec-its'
+  gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
 end
 
