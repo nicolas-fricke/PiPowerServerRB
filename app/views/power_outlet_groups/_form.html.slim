@@ -1,0 +1,18 @@
+= form_for @power_outlet_group do |f|
+  - if @power_outlet_group.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@power_outlet_group.errors.count, "error")} prohibited this power_outlet_group from being saved:"
+      ul
+        - @power_outlet_group.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :permalink
+    = f.text_field :permalink
+  .actions = f.submit

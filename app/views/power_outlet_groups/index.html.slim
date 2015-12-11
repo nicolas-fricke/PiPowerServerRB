@@ -1,0 +1,25 @@
+h1 Listing power_outlet_groups
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th Permalink
+      th
+      th
+      th
+
+  tbody
+    - @power_outlet_groups.each do |power_outlet_group|
+      tr
+        td = power_outlet_group.name
+        td = power_outlet_group.description
+        td = power_outlet_group.permalink
+        td = link_to 'Show', power_outlet_group
+        td = link_to 'Edit', edit_power_outlet_group_path(power_outlet_group)
+        td = link_to 'Destroy', power_outlet_group, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Power outlet group', new_power_outlet_group_path

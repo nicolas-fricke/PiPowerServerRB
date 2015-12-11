@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @power_outlet_group.name
+p
+  strong Description:
+  = @power_outlet_group.description
+p
+  strong Permalink:
+  = @power_outlet_group.permalink
+
+= link_to 'Edit', edit_power_outlet_group_path(@power_outlet_group)
+'|
+= link_to 'Back', power_outlet_groups_path
