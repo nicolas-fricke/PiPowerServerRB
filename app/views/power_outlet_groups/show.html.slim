@@ -9,6 +9,14 @@ p
 p
   strong Permalink:
   = @power_outlet_group.permalink
+p
+  strong Connected Outlets:
+  br
+  ul
+    - @power_outlet_group.power_outlets.each do |outlet|
+      li = link_to outlet.name, power_outlet_path(outlet)
+  
+
 
 = link_to 'Edit', edit_power_outlet_group_path(@power_outlet_group)
 '|

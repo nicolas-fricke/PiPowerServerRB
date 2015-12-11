@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211170922) do
+ActiveRecord::Schema.define(version: 20151211172536) do
 
   create_table "frequencies", force: :cascade do |t|
     t.string   "system_code",                 null: false
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20151211170922) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "power_outlet_groups_outlets", id: false, force: :cascade do |t|
+    t.integer "power_outlet_id",       null: false
+    t.integer "power_outlet_group_id", null: false
+  end
+
+  add_index "power_outlet_groups_outlets", ["power_outlet_group_id", "power_outlet_id"], name: "join_index_power_outlet_groups_to_outlets", unique: true
+  add_index "power_outlet_groups_outlets", ["power_outlet_id", "power_outlet_group_id"], name: "join_index_power_outlets_to_groups", unique: true
 
   create_table "power_outlets", force: :cascade do |t|
     t.string   "name",         null: false

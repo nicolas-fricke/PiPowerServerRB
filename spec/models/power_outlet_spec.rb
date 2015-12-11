@@ -23,4 +23,19 @@ RSpec.describe PowerOutlet do
       end
     end
   end
+
+  describe 'having relations' do
+    let(:power_outlet) { FactoryGirl.create :power_outlet }
+    context 'has_many power outlet groups' do
+      let(:power_outlet_groups) do
+        FactoryGirl.create_list :power_outlet_group, 2
+      end
+      it 'associates power outlets to group' do
+        expect(power_outlet.power_outlet_groups).to be_empty
+        power_outlet.power_outlet_groups = power_outlet_groups
+        power_outlet.save
+        expect(power_outlet.power_outlet_groups).to have(2).items
+      end
+    end
+  end
 end
