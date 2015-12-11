@@ -1,0 +1,18 @@
+= form_for @frequency do |f|
+  - if @frequency.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@frequency.errors.count, "error")} prohibited this frequency from being saved:"
+      ul
+        - @frequency.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :system_code
+    = f.text_field :system_code
+  .field
+    = f.label :socket_code
+    = f.number_field :socket_code
+  .field
+    = f.label :is_on
+    = f.check_box :is_on
+  .actions = f.submit

@@ -1,0 +1,25 @@
+h1 Listing frequencies
+
+table
+  thead
+    tr
+      th System code
+      th Socket code
+      th Is on
+      th
+      th
+      th
+
+  tbody
+    - @frequencies.each do |frequency|
+      tr
+        td = frequency.system_code
+        td = frequency.socket_code
+        td = frequency.is_on
+        td = link_to 'Show', frequency
+        td = link_to 'Edit', edit_frequency_path(frequency)
+        td = link_to 'Destroy', frequency, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Frequency', new_frequency_path
