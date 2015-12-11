@@ -34,4 +34,25 @@ RSpec.describe PowerOutlet do
       it { should_not be_valid }
     end
   end
+
+  describe 'callbacks' do
+    context 'on is_on change' do
+      let(:power_outlet) { FactoryGirl.create :power_outlet, is_on: false }
+      it 'triggers a system call' do
+        expect(power_outlet).to receive(:system).with(
+          /switching\s+#{power_outlet.system_code}\s+#{power_outlet.socket_code}\s+1/
+        )
+        power_outlet.is_on = true
+        power_outlet.save
+      end
+    end
+    context 'on name change' do
+      let(:power_outlet) { FactoryGirl.create :power_outlet }
+      it 'does not trigger a system call' do
+        expect(power_outlet).to_not receive(:system)
+        power_outlet.name = 'A new name'
+        power_outlet.save
+      end
+    end
+  end
 end

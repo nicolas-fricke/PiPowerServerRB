@@ -1,12 +1,12 @@
 default: &default-settings
   commands: #&default-commands
-    switch: /home/pi/Projects/rcswitch-pi/send %{system_code} %{socket_code} %{on_off}
+    switch: echo 'switching %{system_code} %{socket_code} %{on_off}'
 
 test:
   <<: *default-settings
-  commands:
-    switch: echo 'switching %{system_code} %{socket_code} %{on_off}'
 development:
   <<: *default-settings
 production:
   <<: *default-settings
+  commands:
+    switch: /home/pi/Projects/rcswitch-pi/send %{system_code} %{socket_code} %{on_off}
