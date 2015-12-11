@@ -10,15 +10,18 @@ p
 
 p
   strong System code:
-  = @power_outlet.system_code
+  = link_to @power_outlet.frequency.system_code,
+            frequency_path(@power_outlet.frequency)
 
 p
   strong Socket code:
-  = @power_outlet.socket_code
+  = link_to @power_outlet.frequency.socket_code,
+            frequency_path(@power_outlet.frequency)
 
 p
   strong Is on:
-  = @power_outlet.is_on
+  = link_to @power_outlet.frequency.is_on,
+            frequency_path(@power_outlet.frequency)
 
 = link_to 'Edit', edit_power_outlet_path(@power_outlet)
 ' |

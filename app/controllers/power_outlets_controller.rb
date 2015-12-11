@@ -24,9 +24,11 @@ class PowerOutletsController < ApplicationController
   # POST /power_outlets
   # POST /power_outlets.json
   def create
-    @power_outlet = PowerOutlet.new(power_outlet_params)
+    @power_outlet = PowerOutlet.new(power_outlet_params).tap do |outlet|
+      outlet.frequency = find_or_create_frequency(params[:frequency])
+    end
     respond_to do |format|
-      if @power_outlet.save
+      if @power_outlet.frequency.save && @power_outlet.save
         format.html { redirect_to @power_outlet, notice: 'Power outlet was successfully created.' }
         format.json { render :show, status: :created, location: @power_outlet }
       else
@@ -68,6 +70,14 @@ class PowerOutletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def power_outlet_params
-      params.require(:power_outlet).permit(:name, :location, :system_code, :socket_code, :is_on)
+      params.require(:power_outlet).permit(:name, :location, :frequency_id)
+    end
+
+
+    def find_or_create_frequency(frequency_params)
+      Frequency.find_or_create_by({
+        system_code: frequency_params[:system_code],
+        socket_code: frequency_params[:socket_code]
+      })
     end
 end

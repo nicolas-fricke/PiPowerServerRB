@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211024814) do
+ActiveRecord::Schema.define(version: 20151211025920) do
 
   create_table "frequencies", force: :cascade do |t|
     t.string   "system_code",                 null: false
@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20151211024814) do
   end
 
   create_table "power_outlets", force: :cascade do |t|
-    t.string   "name",                        null: false
+    t.string   "name",         null: false
     t.string   "location"
-    t.string   "system_code",                 null: false
-    t.integer  "socket_code",                 null: false
-    t.boolean  "is_on",       default: false, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "frequency_id"
   end
+
+  add_index "power_outlets", ["frequency_id"], name: "index_power_outlets_on_frequency_id"
 
 end

@@ -1,12 +1,14 @@
 = form_for(@power_outlet) do |f|
-  - if @power_outlet.errors.any?
+  - if @power_outlet.errors.any? || @power_outlet.frequency.errors.any?
     #error_explanation
       h2 
-        = pluralize(@power_outlet.errors.count, 'error') 
+        = pluralize(@power_outlet.errors.count + @power_outlet.frequency.errors.count, 'error') 
         ' prohibited this power_outlet from being saved:
 
       ul
       - @power_outlet.errors.full_messages.each do |message|
+        li = message
+      - @power_outlet.frequency.errors.full_messages.each do |message|
         li = message
 
   .field
@@ -18,16 +20,12 @@
     br
     = f.text_field :location
   .field
-    = f.label :system_code
+    = label_tag :'frequency[system_code]', 'System code'
     br
-    = f.text_field :system_code
-  field
-    = f.label :socket_code
-    br
-    = f.text_field :socket_code
+    = text_field_tag :'frequency[system_code]'
   .field
-    = f.label :is_on
+    = label_tag :'frequency[socket_code]', 'Socket code'
     br
-    = f.check_box :is_on
+    = text_field_tag :'frequency[socket_code]'
   .actions
     = f.submit

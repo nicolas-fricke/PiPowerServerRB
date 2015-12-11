@@ -16,9 +16,9 @@ table
       tr
         td = power_outlet.name
         td = power_outlet.location
-        td = power_outlet.system_code
-        td = power_outlet.socket_code
-        td = power_outlet.is_on
+        / td = link_to power_outlet.frequency.system_code, frequency_path(power_outlet.frequency)
+        / td = link_to power_outlet.frequency.socket_code, frequency_path(power_outlet.frequency)
+        / td = link_to power_outlet.frequency.is_on.to_s, frequency_path(power_outlet.frequency)
         td = link_to 'Show', power_outlet
         td = link_to 'Edit', edit_power_outlet_path(power_outlet)
         td = link_to 'Destroy', power_outlet, method: :delete, data: { confirm: 'Are you sure?' }

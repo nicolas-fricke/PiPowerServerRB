@@ -57,8 +57,19 @@ RSpec.describe PowerOutletsController do
   end
 
   describe 'POST #create' do
+    let(:frequency) { FactoryGirl.create :frequency }
     let(:params) { FactoryGirl.attributes_for(:power_outlet) }
-    let(:post_action) { -> { post :create, {power_outlet: params} } }
+    let(:post_action) do
+      -> do
+        post :create, {
+          power_outlet: params,
+          frequency: {
+            system_code: frequency.system_code,
+            socket_code: frequency.socket_code
+          }
+        }
+      end
+    end
     context 'with valid params' do
       it 'creates a new PowerOutlet' do
         expect { post_action.call }.to change(PowerOutlet, :count).by(1)
@@ -77,7 +88,7 @@ RSpec.describe PowerOutletsController do
     end
 
     context 'with invalid params' do
-      let(:params) { {name: 'test', socket_code: false} }
+      let(:params) { {name: nil} }
       before { post_action.call }
       it 'assigns a newly created but unsaved power_outlet as @power_outlet' do
         expect(assigns(:power_outlet)).to be_a_new(PowerOutlet)
@@ -90,18 +101,18 @@ RSpec.describe PowerOutletsController do
   end
 
   describe 'PUT #update' do
-    let(:power_outlet) { FactoryGirl.create :power_outlet, is_on: false }
+    let(:power_outlet) { FactoryGirl.create :power_outlet, name: 'My lamp' }
     let(:new_attributes) { {} }
     let(:put_action) do
       -> { put :update, {id: power_outlet.id, power_outlet: new_attributes} }
     end
     context 'with valid params' do
-      let(:new_attributes) { {is_on: true} }
+      let(:new_attributes) { {name: 'Your lamp'} }
       it 'updates the requested power_outlet' do
         put_action.call
-        expect(power_outlet.is_on).to be false
+        expect(power_outlet.name).to eq 'My lamp'
         power_outlet.reload
-        expect(power_outlet.is_on).to be true
+        expect(power_outlet.name).to eq 'Your lamp'
       end
 
       it 'assigns the requested power_outlet as @power_outlet' do
@@ -116,7 +127,7 @@ RSpec.describe PowerOutletsController do
     end
 
     context 'with invalid params' do
-      let(:new_attributes) { {socket_code: '1234'} }
+      let(:new_attributes) { {name: nil} }
       it 'assigns the power_outlet as @power_outlet' do
         put_action.call
         expect(assigns(:power_outlet)).to eq(power_outlet)
