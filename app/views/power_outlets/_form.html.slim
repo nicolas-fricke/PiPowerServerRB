@@ -1,0 +1,33 @@
+= form_for(@power_outlet) do |f|
+  - if @power_outlet.errors.any?
+    #error_explanation
+      h2 
+        = pluralize(@power_outlet.errors.count, 'error') 
+        ' prohibited this power_outlet from being saved:
+
+      ul
+      - @power_outlet.errors.full_messages.each do |message|
+        li = message
+
+  .field
+    = f.label :name
+    br
+    = f.text_field :name
+  .field
+    = f.label :location
+    br
+    = f.text_field :location
+  .field
+    = f.label :system_code
+    br
+    = f.text_field :system_code
+  field
+    = f.label :socket_code
+    br
+    = f.text_field :socket_code
+  .field
+    = f.label :is_on
+    br
+    = f.check_box :is_on
+  .actions
+    = f.submit

@@ -1,0 +1,27 @@
+p#notice = notice
+
+h1 Listing Power Outlets
+
+table
+  thead
+    tr
+      th Name
+      th Location
+      th System code
+      th Socket code
+      th Is on
+      th colspan='3'
+  tbody
+    - @power_outlets.each do |power_outlet|
+      tr
+        td = power_outlet.name
+        td = power_outlet.location
+        td = power_outlet.system_code
+        td = power_outlet.socket_code
+        td = power_outlet.is_on
+        td = link_to 'Show', power_outlet
+        td = link_to 'Edit', edit_power_outlet_path(power_outlet)
+        td = link_to 'Destroy', power_outlet, method: :delete, data: { confirm: 'Are you sure?' }
+br
+
+= link_to 'New Power outlet', new_power_outlet_path

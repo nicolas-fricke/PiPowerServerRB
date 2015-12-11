@@ -1,0 +1,25 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @power_outlet.name
+
+p
+  strong Location:
+  = @power_outlet.location
+
+p
+  strong System code:
+  = @power_outlet.system_code
+
+p
+  strong Socket code:
+  = @power_outlet.socket_code
+
+p
+  strong Is on:
+  = @power_outlet.is_on
+
+= link_to 'Edit', edit_power_outlet_path(@power_outlet)
+' |
+= link_to 'Back', power_outlets_path
