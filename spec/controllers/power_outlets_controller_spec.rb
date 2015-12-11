@@ -58,7 +58,7 @@ RSpec.describe PowerOutletsController do
 
   describe 'POST #create' do
     let(:params) { FactoryGirl.attributes_for(:power_outlet) }
-    let(:post_action) { -> { post :create, params } }
+    let(:post_action) { -> { post :create, {power_outlet: params} } }
     context 'with valid params' do
       it 'creates a new PowerOutlet' do
         expect { post_action.call }.to change(PowerOutlet, :count).by(1)
@@ -93,7 +93,7 @@ RSpec.describe PowerOutletsController do
     let(:power_outlet) { FactoryGirl.create :power_outlet, is_on: false }
     let(:new_attributes) { {} }
     let(:put_action) do
-      -> { put :update, {id: power_outlet.id}.merge(new_attributes) }
+      -> { put :update, {id: power_outlet.id, power_outlet: new_attributes} }
     end
     context 'with valid params' do
       let(:new_attributes) { {is_on: true} }
