@@ -38,4 +38,87 @@ RSpec.describe PowerOutlet do
       end
     end
   end
+
+  describe '#is_on' do
+    let(:is_on) { true }
+    let(:frequency) { FactoryGirl.create :frequency, is_on: is_on }
+    let(:power_outlet) do
+      FactoryGirl.create :power_outlet, frequency: frequency
+    end
+    subject { power_outlet.is_on }
+
+    context 'when is_on == true' do
+      let(:is_on) { true }
+      it { should eq is_on }
+    end
+
+    context 'when is_on == false' do
+      let(:is_on) { false }
+      it { should eq is_on }
+    end
+  end
+
+  describe '#is_on=' do
+    let(:is_on) { true }
+    let(:frequency) { FactoryGirl.create :frequency, is_on: is_on }
+    let(:power_outlet) do
+      FactoryGirl.create :power_outlet, frequency: frequency
+    end
+    it 'changes the is_on state of the associated frequency' do
+      expect { power_outlet.is_on = !is_on }
+        .to change { power_outlet.frequency.is_on }
+          .from(is_on).to(!is_on)
+    end
+  end
+
+  describe '#save' do
+    describe 'accociated frequency' do
+      let(:frequency) { FactoryGirl.create :frequency, is_on: old_is_on }
+      let(:power_outlet) do
+        FactoryGirl.create :power_outlet, frequency: frequency
+      end
+
+      context 'when is_on is true' do
+        let(:old_is_on) { true }
+        context 'and new state is false' do
+          let(:new_is_on) { !old_is_on }
+          it 'should set the frequency to new state' do
+            power_outlet.is_on = new_is_on
+            expect { power_outlet.save }
+              .to change { Frequency.find(frequency.id).is_on }
+              .from(old_is_on).to(new_is_on)
+          end
+        end
+        context 'and new state is also true' do
+          let(:new_is_on) { old_is_on }
+          it 'should not change the frequency' do
+            power_outlet.is_on = new_is_on
+            expect { power_outlet.save }
+              .not_to change { Frequency.find(frequency.id).is_on }
+          end
+        end
+      end
+
+      context 'when is_on is false' do
+        let(:old_is_on) { false }
+        context 'and new state is also false' do
+          let(:new_is_on) { old_is_on }
+          it 'should set the frequency to new state' do
+            power_outlet.is_on = new_is_on
+            expect { power_outlet.save }
+              .not_to change { Frequency.find(frequency.id).is_on }
+          end
+        end
+        context 'and new state is true' do
+          let(:new_is_on) { !old_is_on }
+          it 'should not change the frequency' do
+            power_outlet.is_on = new_is_on
+            expect { power_outlet.save }
+              .to change { Frequency.find(frequency.id).is_on }
+              .from(old_is_on).to(new_is_on)
+          end
+        end
+      end
+    end
+  end
 end
