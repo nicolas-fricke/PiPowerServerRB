@@ -3,15 +3,8 @@ class PowerOutlet < ActiveRecord::Base
   has_and_belongs_to_many :power_outlet_groups
   validates :name, :frequency, presence: true
 
+  delegate :is_on, :is_on=, to: :frequency
   after_save :save_frequency
-
-  def is_on
-    frequency.is_on
-  end
-
-  def is_on=(value)
-    frequency.is_on = value
-  end
 
   def save_frequency
     frequency.save if frequency.changed?
