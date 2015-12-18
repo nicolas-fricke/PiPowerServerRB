@@ -70,7 +70,7 @@ class PowerOutletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def power_outlet_params
-      params.require(:power_outlet).permit(:name, :location, :frequency_id)
+      params.require(:power_outlet).permit(:name, :location, :is_on, :frequency_id)
     end
 
 

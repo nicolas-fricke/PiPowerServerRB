@@ -9,6 +9,14 @@ p
 p
   strong Permalink:
   = @power_outlet_group.permalink
+p 
+  strong Is on:
+  - if @power_outlet_group.is_on
+    ' on
+  - elsif @power_outlet_group.is_on == false
+    ' off
+  - elsif @power_outlet_group.is_on.nil?
+    ' mixed
 p
   strong Connected Outlets:
   br

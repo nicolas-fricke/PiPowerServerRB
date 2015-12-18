@@ -1,1 +1,1 @@
-json.extract! @power_outlet_group, :id, :name, :description, :permalink, :created_at, :updated_at
+json.extract! @power_outlet_group, :id, :name, :description, :permalink, :is_on, :created_at, :updated_at

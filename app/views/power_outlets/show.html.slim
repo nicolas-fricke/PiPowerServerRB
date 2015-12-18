@@ -20,7 +20,7 @@ p
 
 p
   strong Is on:
-  = link_to @power_outlet.frequency.is_on,
+  = link_to @power_outlet.frequency.is_on.to_s,
             frequency_path(@power_outlet.frequency)
 
 = link_to 'Edit', edit_power_outlet_path(@power_outlet)

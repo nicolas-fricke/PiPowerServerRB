@@ -21,6 +21,9 @@
     br
     = f.text_field :location
   .field
+    = f.label :is_on
+    = f.check_box :is_on
+  .field
     = label_tag :'frequency[system_code]', 'System code'
     br
     = text_field_tag :'frequency[system_code]'

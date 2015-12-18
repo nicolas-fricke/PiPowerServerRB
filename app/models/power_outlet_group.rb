@@ -12,16 +12,20 @@ class PowerOutletGroup < ActiveRecord::Base
 
   def is_on=(value)
     is_on_changed!
-    power_outlets.map(&:frequency).uniq.each do |frequency|
+    frequencies.each do |frequency|
       frequency.is_on = value
     end
   end
 
   def save_frequencies
-    power_outlets.map(&:frequency).uniq.each(&:save) if is_on_changed?
+    frequencies.each(&:save) if is_on_changed?
   end
 
   private
+  def frequencies
+    @frequencies ||= power_outlets.map(&:frequency).uniq
+  end
+
   def is_on_changed!
     @is_on_changed = true
   end

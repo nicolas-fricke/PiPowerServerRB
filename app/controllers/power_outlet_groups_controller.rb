@@ -69,6 +69,6 @@ class PowerOutletGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def power_outlet_group_params
-      params.require(:power_outlet_group).permit(:name, :description, :permalink, power_outlet_ids: [])
+      params.require(:power_outlet_group).permit(:name, :description, :permalink, :is_on, power_outlet_ids: [])
     end
 end
