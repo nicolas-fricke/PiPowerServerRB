@@ -31,4 +31,38 @@ RSpec.describe PowerOutletGroup do
       end
     end
   end
+
+  describe '#is_on' do
+    let(:frequency_1) { FactoryGirl.create :frequency, is_on: is_on_freq_1 }
+    let(:frequency_2) { FactoryGirl.create :frequency, is_on: is_on_freq_2 }
+    let(:power_outlets_freq_1) do
+      FactoryGirl.create_list :power_outlet, 3, frequency: frequency_1
+    end
+    let(:power_outlets_freq_2) do
+      FactoryGirl.create_list :power_outlet, 2, frequency: frequency_2
+    end
+    let(:power_outlet_group) do
+      FactoryGirl.create :power_outlet_group,
+                         power_outlets: [
+                           *power_outlets_freq_1,
+                           *power_outlets_freq_2
+                         ]
+    end
+    subject { power_outlet_group.is_on }
+    context 'when both frequencies are on' do
+      let(:is_on_freq_1) { true }
+      let(:is_on_freq_2) { true }
+      it { should be true }
+    end
+    context 'when both frequencies are off' do
+      let(:is_on_freq_1) { false }
+      let(:is_on_freq_2) { false }
+      it { should be false }
+    end
+    context 'when one frequency is off and one is on' do
+      let(:is_on_freq_1) { false }
+      let(:is_on_freq_2) { true }
+      it { should be nil }
+    end
+  end
 end
