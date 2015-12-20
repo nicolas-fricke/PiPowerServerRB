@@ -14,7 +14,7 @@ table
     - @frequencies.each do |frequency|
       tr
         td = frequency.system_code
-        td = frequency.socket_code
+        td = frequency.socket_code_human
         td = frequency.is_on
         td = link_to 'Show', frequency
         td = link_to 'Edit', edit_frequency_path(frequency)

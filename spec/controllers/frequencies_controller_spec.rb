@@ -77,7 +77,7 @@ RSpec.describe FrequenciesController do
     end
 
     context 'with invalid params' do
-      let(:params) { {socket_code: 12} }
+      let(:params) { {socket_code_human: 'X'} }
       before { post_action.call }
       it 'assigns a newly created but unsaved frequency as @frequency' do
         expect(assigns(:frequency)).to be_a_new(Frequency)
@@ -116,7 +116,7 @@ RSpec.describe FrequenciesController do
     end
 
     context 'with invalid params' do
-      let(:new_attributes) { {socket_code: '1234'} }
+      let(:new_attributes) { {socket_code_human: 'Q'} }
       it 'assigns the frequency as @frequency' do
         put_action.call
         expect(assigns(:frequency)).to eq(frequency)

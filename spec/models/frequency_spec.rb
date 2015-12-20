@@ -16,8 +16,8 @@ RSpec.describe Frequency do
         let(:missing_param) { :system_code }
         it { should_not be_valid }
       end
-      context 'missing socket_code' do
-        let(:missing_param) { :socket_code }
+      context 'missing socket_code_human' do
+        let(:missing_param) { :socket_code_human }
         it { should_not be_valid }
       end
     end
@@ -25,8 +25,8 @@ RSpec.describe Frequency do
       let(:params) { valid_frequency_params.merge(system_code: 'test') }
       it { should_not be_valid }
     end
-    describe 'socket_code' do
-      let(:params) { valid_frequency_params.merge(socket_code: 7) }
+    describe 'socket_code_human' do
+      let(:params) { valid_frequency_params.merge(socket_code_human: 'x') }
       it { should_not be_valid }
     end
   end
