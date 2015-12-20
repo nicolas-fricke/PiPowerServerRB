@@ -2,8 +2,8 @@
   - frequency_errors = @power_outlet.frequency.try(:errors) || []
   - if @power_outlet.errors.any? || frequency_errors.any?
     #error_explanation
-      h2 
-        = pluralize(@power_outlet.errors.count + frequency_errors.count, 'error') 
+      h2
+        = pluralize(@power_outlet.errors.count + frequency_errors.count, 'error')
         ' prohibited this power_outlet from being saved:
 
       ul
@@ -32,4 +32,4 @@
     br
     = text_field_tag :'frequency[socket_code_human]'
   .actions
-    = f.submit
+    = f.submit 'Save Outlet', class: 'btn btn-info'
