@@ -69,6 +69,6 @@ class FrequenciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def frequency_params
-      params.require(:frequency).permit(:system_code, :socket_code, :is_on)
+      params.require(:frequency).permit(:system_code, :socket_code_human, :is_on)
     end
 end
