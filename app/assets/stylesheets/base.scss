@@ -1,15 +1,25 @@
 body {
-  background-color: #fff;
+  background-color: #f1f1f1;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
-p, ol, ul, td {
+.logo {
+  background-image: image-url("logo.png");
+  background-size:cover;
+  width: 80px;
+  height: 80px;
+  float: left;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+p, ol, ul, td, th {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
+  padding: 5px;
 }
 
 pre {
@@ -18,23 +28,21 @@ pre {
   font-size: 11px;
 }
 
-a {
+h1 {
   color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+  margin-top: 50px;
 }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+}
+
+.container {
+  background-color: #fff;
+  padding: 50px;
+  width: 100%;
 }
 
 #notice {
