@@ -1,5 +1,6 @@
 class PowerOutletGroup < ActiveRecord::Base
   has_and_belongs_to_many :power_outlets
+  has_one :dashboard_entry
   validates :name, presence: true
 
   after_save :save_frequencies

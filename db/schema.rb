@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211172536) do
+ActiveRecord::Schema.define(version: 20151220151958) do
+
+  create_table "dashboard_entries", force: :cascade do |t|
+    t.integer  "position"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "dashboard_entries", ["item_type", "item_id"], name: "index_dashboard_entries_on_item_type_and_item_id"
 
   create_table "frequencies", force: :cascade do |t|
     t.string   "system_code",                 null: false
