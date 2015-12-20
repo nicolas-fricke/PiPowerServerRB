@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'power_outlets#index'
+  root 'dashboards#show'
 
   resources :frequencies
   resources :power_outlets do
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :power_outlet_groups do
     resource :switch, only: [:update], defaults: {format: :json}
   end
+  resource :dashboard, only: [:show, :create, :destroy]
 end
