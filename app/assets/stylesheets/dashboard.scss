@@ -1,3 +1,39 @@
 .dashboard-item {
   height: 130px;
+  background-color: #f1f1f1;
+  margin: 10px 0px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  text-align: center;
+  border-radius: 10px;
+  .item-title {
+    padding: 5px 0px;
+    font-style: bold;
+  }
+  .item-loc {
+    font-size: 15px;
+    margin: 5px;
+  }
+  .group-title {
+    padding: 5px 30px;
+    font-style: bold;
+  }
+  .group-descritption {
+    padding: 0px 30px;
+    font-size: 15px;
+    margin: 5px;
+  }
+}
+
+.group-icon {
+  background-image: image-url("group.png");
+  background-size:cover;
+  width: 30px;
+  height: 30px;
+  float: left;
+}
+
+#edit-view {
+  float: right;
 }
