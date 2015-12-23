@@ -12,19 +12,28 @@ h1 Dashboard
               => link_to item.name, item
               - if item.is_a? PowerOutletGroup
                 ' (group)
-              = button_to('remove',
-                          dashboard_path(dashboard_entry: { id: entry.id }),
-                          method: :delete)
-              input.switch { type='checkbox'
-                             name="switch-entry-#{entry.id}"
-                             checked=(item.is_on != false)
-                             data-indeterminate="#{item.is_on == nil}" 
-                             data-switch-url="#{url_for(item)}/switch" }
+              .row
+                .col-md-12
+                  = button_to 'Delete',
+                              dashboard_path(dashboard_entry: { id: entry.id }),
+                              method: :delete,
+                              class: 'btn btn-delete'
+                  = button_to 'Edit',
+                              dashboard_path(dashboard_entry: { id: entry.id }),
+                              method: :edit,
+                              class: 'btn btn-edit'
+              .row
+                .col-md-12
+                  input.switch { type='checkbox'
+                                 name="switch-entry-#{entry.id}"
+                                 checked=(item.is_on != false)
+                                 data-indeterminate="#{item.is_on == nil}"
+                                 data-switch-url="#{url_for(item)}/switch" }
 
 - unless @available_new_entries.empty?
   .row
     .col-md-2
-      = button_tag('Add another entry', id: 'toggle-add-another')
+      = button_tag '+ Add Another Entry', id: 'toggle-add-another', class: 'btn btn-info'
     .col-md-10
       #add-another-selection.hide-initially
         - @available_new_entries.each do |new_entry|
@@ -40,7 +49,7 @@ h1 Dashboard
       $('.dashboard-switches-container')
         .load(location.href + ' .dashboard-switches', initializeSwitches);
     };
-  
+
     var initializeSwitches = function(){
       $('.switch')
         .bootstrapSwitch()
@@ -53,7 +62,7 @@ h1 Dashboard
           }).done(reloadSwitchesContainer);
         });
     };
-    
+
     $(document).ready(function(){
       initializeSwitches();
       $('#toggle-add-another').click(function(){
