@@ -1,4 +1,3 @@
-/ - content_for :javascript
 h1 Dashboard
 
 - @entries.in_groups_of(3).each do |group|
@@ -12,23 +11,23 @@ h1 Dashboard
           - if item.is_a? PowerOutletGroup
             ' (group)
           = "(is on: #{item.is_on})"
-          = button_to 'remove',
+          = button_to('remove',
                       dashboard_path(dashboard_entry: { id: entry.id }),
-                      method: :delete
+                      method: :delete)
 
 - unless @available_new_entries.empty?
   .row
     .col-md-2
-      = button_tag 'Add another entry', id: 'toggle-add-another'
+      = button_tag('Add another entry', id: 'toggle-add-another')
     .col-md-10
       #add-another-selection.hide-initially
         - @available_new_entries.each do |new_entry|
           - name = new_entry.is_a?(PowerOutletGroup) ? "#{new_entry.name} (group)" : new_entry.name
           = button_to(name,
                       dashboard_path(dashboard_entry: { item_id: new_entry.id,
-                                                        item_type: new_entry.class.name }), 
+                                                        item_type: new_entry.class.name }),
                       method: :post)
-  
+
 - content_for(:javascript)
   javascript:
     $(document).ready(function(){
