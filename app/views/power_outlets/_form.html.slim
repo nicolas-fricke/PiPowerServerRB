@@ -9,7 +9,7 @@
       ul
       - @power_outlet.errors.full_messages.each do |message|
         li = message
-      - frequency_errors.try(:full_messages, []).each do |message|
+      - frequency_errors.try(:full_messages).try(:each) do |message|
         li = message
 
   .field

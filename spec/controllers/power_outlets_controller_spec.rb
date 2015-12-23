@@ -65,7 +65,7 @@ RSpec.describe PowerOutletsController do
           power_outlet: params,
           frequency: {
             system_code: frequency.system_code,
-            socket_code: frequency.socket_code
+            socket_code_human: frequency.socket_code_human
           }
         }
       end

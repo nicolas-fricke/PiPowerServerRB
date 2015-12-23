@@ -25,7 +25,7 @@ class PowerOutletsController < ApplicationController
   # POST /power_outlets.json
   def create
     @power_outlet = PowerOutlet.new(power_outlet_params).tap do |outlet|
-      outlet.frequency = find_or_create_frequency(params[:frequency])
+      outlet.frequency = find_or_create_frequency(frequency_params)
     end
     respond_to do |format|
       if @power_outlet.frequency.save && @power_outlet.save
@@ -73,11 +73,14 @@ class PowerOutletsController < ApplicationController
       params.require(:power_outlet).permit(:name, :location, :is_on, :frequency_id)
     end
 
+    def frequency_params
+      params.require(:frequency).permit(:system_code, :socket_code_human)
+    end
 
-    def find_or_create_frequency(frequency_params)
+    def find_or_create_frequency(params)
       Frequency.find_or_create_by({
-        system_code: frequency_params[:system_code],
-        socket_code: frequency_params[:socket_code]
+        system_code: params[:system_code],
+        socket_code: Frequency.socket_code_char_to_i(params[:socket_code_human])
       })
     end
 end

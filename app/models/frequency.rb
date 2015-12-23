@@ -17,7 +17,7 @@ class Frequency < ActiveRecord::Base
   before_update :switch_power_outlet
 
   def socket_code_human=(value)
-    self.socket_code = SOCKET_CODE_TRANSLATION[value.to_s.upcase.to_sym]
+    self.socket_code = self.class.socket_code_char_to_i(value)
   end
 
   def socket_code_human
@@ -31,6 +31,12 @@ class Frequency < ActiveRecord::Base
         socket_code: socket_code,
         on_off: is_on ? 1 : 0
       })
+    end
+  end
+
+  class << self
+    def socket_code_char_to_i(char)
+      SOCKET_CODE_TRANSLATION[char.to_s.upcase.to_sym]
     end
   end
 end

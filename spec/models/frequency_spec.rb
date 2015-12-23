@@ -51,4 +51,23 @@ RSpec.describe Frequency do
       end
     end
   end
+
+  describe '.socket_code_char_to_i' do
+    subject { described_class.socket_code_char_to_i(char) }
+    context 'when mapping exists' do
+      context 'for capital char' do
+        let(:char) { 'A' }
+        it { should eq 1 }
+      end
+      context 'for lowercase char' do
+        let(:char) { 'b' }
+        it { should eq 2 }
+      end
+    end
+
+    context 'when mapping does not exist' do
+      let(:char) { 'X' }
+      it { should be_nil }
+    end
+  end
 end
