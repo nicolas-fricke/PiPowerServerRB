@@ -9,9 +9,17 @@ h1 Dashboard
           - item = entry.item
           .col-md-4
             .dashboard-item
-              => item.name
               - if item.is_a? PowerOutletGroup
-                ' (group)
+                .group-icon
+                .item-title
+                  => item.name.titleize
+                .item-loc
+                  => item.description.titleize
+              - else
+                .item-title
+                  => item.name.titleize
+                .item-loc
+                  => item.location.titleize
               .row
                 .col-md-12
                   = button_to dashboard_path(dashboard_entry: { id: entry.id }),
