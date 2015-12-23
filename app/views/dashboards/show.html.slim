@@ -9,7 +9,7 @@ h1 Dashboard
           - item = entry.item
           .col-md-4
             .dashboard-item
-              => link_to item.name, item
+              => item.name
               - if item.is_a? PowerOutletGroup
                 ' (group)
               .row
@@ -28,7 +28,11 @@ h1 Dashboard
                                  name="switch-entry-#{entry.id}"
                                  checked=(item.is_on != false)
                                  data-indeterminate="#{item.is_on == nil}"
-                                 data-switch-url="#{url_for(item)}/switch" }
+                                 data-switch-url="#{url_for(item)}/switch"
+                                 data-on-color="success"
+                                 data-size="large"
+                                 data-handle-width=100
+                               }
 
 - unless @available_new_entries.empty?
   .row

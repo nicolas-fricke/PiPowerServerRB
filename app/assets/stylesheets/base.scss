@@ -86,7 +86,7 @@ div {
 
 .btn-delete {
   float: left;
-  background-color: #f9266f;
+  background-color: grey;
   color: white;
   margin: 10px 0;
   padding: 0px 1px 0px 1px;
@@ -95,8 +95,28 @@ div {
 
 .btn-edit {
   float: left;
-  background-color: orange;
+  color: white;
+  background-color: grey;
   margin: 10px;
   padding: 0px 1px 0px 1px;
   font-size: 10px;
 }
+
+.dashboard-item {
+  background-color: #f1f1f1;
+  margin: 10px 0px;
+  padding: 10px;
+  font-size: 25px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  text-align: center;
+  border-radius: 10px;
+}
+
+// .on-off {
+//   float: left;
+//   font-size: 10px;
+//   .bootstrap-switch-handle-on.bootstrap-switch-primary {
+//   background-color: green;
+
+//   }
+// }
