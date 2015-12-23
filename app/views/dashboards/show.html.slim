@@ -10,10 +10,13 @@ h1 Dashboard
           => link_to item.name, item
           - if item.is_a? PowerOutletGroup
             ' (group)
-          = "(is on: #{item.is_on})"
           = button_to('remove',
                       dashboard_path(dashboard_entry: { id: entry.id }),
                       method: :delete)
+          input.switch { type='checkbox'
+                         name="switch-entry-#{entry.id}"
+                         checked=(item.is_on != false)
+                         data-indeterminate="#{item.is_on == nil}" }
 
 - unless @available_new_entries.empty?
   .row
@@ -31,6 +34,7 @@ h1 Dashboard
 - content_for(:javascript)
   javascript:
     $(document).ready(function(){
+      $('.switch').bootstrapSwitch();
       $('#toggle-add-another').click(function(){
         $('#add-another-selection').toggle();
       });
