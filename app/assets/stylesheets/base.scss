@@ -111,10 +111,18 @@ div {
   text-align: center;
   border-radius: 10px;
   .item-title {
-    padding: 5px;
+    padding: 5px 0px;
     font-style: bold;
   }
   .item-loc {
+    font-size: 15px;
+  }
+  .group-title {
+    padding: 5px 30px;
+    font-style: bold;
+  }
+  .group-descritption {
+    padding: 0px 30px;
     font-size: 15px;
   }
 }

@@ -11,9 +11,9 @@ h1 Dashboard
             .dashboard-item
               - if item.is_a? PowerOutletGroup
                 .group-icon
-                .item-title
+                .group-title
                   => item.name.titleize
-                .item-loc
+                .group-descritption
                   => item.description.titleize
               - else
                 .item-title
