@@ -26,7 +26,7 @@
   .field
     = label_tag :'frequency[system_code]', 'System code'
     br
-    = text_field_tag :'frequency[system_code]', 
+    = text_field_tag :'frequency[system_code]',
                      @power_outlet.frequency.try(:system_code),
                      placeholder: 'Five digit binary code',
                      required: true,
@@ -34,10 +34,10 @@
   .field
     = label_tag :'frequency[socket_code_human]', 'Socket code'
     br
-    = text_field_tag :'frequency[socket_code_human]', 
-                     @power_outlet.frequency.try(:socket_code_human), 
+    = text_field_tag :'frequency[socket_code_human]',
+                     @power_outlet.frequency.try(:socket_code_human),
                      placeholder: 'Letter A-E',
                      required: true,
                      disabled: @power_outlet.persisted?
   .actions
-    = f.submit 'Save Outlet', class: 'btn btn-info'
+    = f.submit 'Save Outlet', class: 'btn btn-success'

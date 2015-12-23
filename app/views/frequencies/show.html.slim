@@ -1,3 +1,4 @@
+= link_to 'Dashboard', dashboard_path, class: 'btn btn-info dashboard-link'
 p#notice = notice
 
 p
@@ -10,6 +11,5 @@ p
   strong Is on:
   = @frequency.is_on
 
-= link_to 'Edit', edit_frequency_path(@frequency)
-'|
-= link_to 'Back', frequencies_path
+= link_to 'Edit', edit_frequency_path(@frequency), class: 'btn btn-info'
+= link_to 'Show Frequencies', frequencies_path, class: 'btn btn-info'

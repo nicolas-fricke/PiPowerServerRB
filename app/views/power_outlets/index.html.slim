@@ -1,5 +1,5 @@
+= link_to 'Dashboard', dashboard_path, class: 'btn btn-info dashboard-link'
 p#notice = notice
-
 h2 Your Power Outlets
 
 table.table-striped
@@ -24,4 +24,5 @@ table.table-striped
         td = link_to 'Destroy', power_outlet, method: :delete, data: { confirm: 'Are you sure?' }
 br
 
-= link_to '+ New Power Outlet', new_power_outlet_path, class: 'btn btn-info'
+= link_to '+ New Power Outlet', new_power_outlet_path, class: 'btn btn-success'
+= link_to 'Show Power Outlet Groups', power_outlet_groups_path, class: 'btn btn-info'

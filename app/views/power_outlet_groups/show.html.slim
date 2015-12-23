@@ -1,3 +1,4 @@
+= link_to 'Dashboard', dashboard_path, class: 'btn btn-info dashboard-link'
 p#notice = notice
 
 p
@@ -9,7 +10,7 @@ p
 p
   strong Permalink:
   = @power_outlet_group.permalink
-p 
+p
   strong Is on:
   - if @power_outlet_group.is_on
     ' on
@@ -23,9 +24,8 @@ p
   ul
     - @power_outlet_group.power_outlets.each do |outlet|
       li = link_to outlet.name, power_outlet_path(outlet)
-  
 
 
-= link_to 'Edit', edit_power_outlet_group_path(@power_outlet_group)
-'|
-= link_to 'Back', power_outlet_groups_path
+
+= link_to 'Edit', edit_power_outlet_group_path(@power_outlet_group), class: 'btn btn-info'
+= link_to 'Back', power_outlet_groups_path, class: 'btn btn-default'

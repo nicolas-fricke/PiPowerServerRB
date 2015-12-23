@@ -1,3 +1,4 @@
+= link_to 'Dashboard', dashboard_path, class: 'btn btn-info dashboard-link'
 p#notice = notice
 
 p
@@ -23,6 +24,5 @@ p
   = link_to @power_outlet.frequency.is_on.to_s,
             frequency_path(@power_outlet.frequency)
 
-= link_to 'Edit', edit_power_outlet_path(@power_outlet)
-' |
-= link_to 'Back', power_outlets_path
+= link_to 'Edit', edit_power_outlet_path(@power_outlet), class: 'btn btn-info'
+= link_to 'Back', power_outlets_path, class: 'btn btn-default'
