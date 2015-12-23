@@ -13,23 +13,31 @@
         li = message
 
   .field
-    = f.label :name
+    = f.label :name, required: true
     br
-    = f.text_field :name
+    = f.text_field :name, placeholder: 'e.g. Desk lamp', required: true
   .field
     = f.label :location
     br
-    = f.text_field :location
+    = f.text_field :location, placeholder: 'e.g. Livingroom'
   .field
     = f.label :is_on
     = f.check_box :is_on
   .field
     = label_tag :'frequency[system_code]', 'System code'
     br
-    = text_field_tag :'frequency[system_code]'
+    = text_field_tag :'frequency[system_code]', 
+                     @power_outlet.frequency.try(:system_code),
+                     placeholder: 'Five digit binary code',
+                     required: true,
+                     disabled: @power_outlet.persisted?
   .field
     = label_tag :'frequency[socket_code_human]', 'Socket code'
     br
-    = text_field_tag :'frequency[socket_code_human]'
+    = text_field_tag :'frequency[socket_code_human]', 
+                     @power_outlet.frequency.try(:socket_code_human), 
+                     placeholder: 'Letter A-E',
+                     required: true,
+                     disabled: @power_outlet.persisted?
   .actions
     = f.submit 'Save Outlet', class: 'btn btn-info'
