@@ -14,14 +14,14 @@ h1 Dashboard
                 ' (group)
               .row
                 .col-md-12
-                  = button_to 'Delete',
-                              dashboard_path(dashboard_entry: { id: entry.id }),
+                  = button_to dashboard_path(dashboard_entry: { id: entry.id }),
                               method: :delete,
                               class: 'btn btn-delete'
-                  = button_to 'Edit',
-                              dashboard_path(dashboard_entry: { id: entry.id }),
+                    span.glyphicon.glyphicon-remove
+                  = button_to dashboard_path(dashboard_entry: { id: entry.id }),
                               method: :edit,
                               class: 'btn btn-edit'
+                    span.glyphicon.glyphicon-pencil
               .row
                 .col-md-12
                   input.switch { type='checkbox'
